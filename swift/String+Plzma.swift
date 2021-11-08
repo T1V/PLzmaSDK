@@ -34,9 +34,14 @@ internal extension String {
 	    if let testString = String(cString: ptr, encoding: .utf8) {
               self.init(cString: ptr, encoding: .utf8)!
 	    } else {
-	      print("---- Failed to make string from pointer")
-	      for i in 0...8 {
-      		print("     v = \(ptr[i])")
+	      print("---- Failed to make string from pointer:")
+	      for i in 0...200 {
+	        if ptr[i] == 0 {
+		  break
+		}
+		if let un = UnicodeScalar(ptr[i]) {
+		  print("\(Character(un))", terminator: "")
+		}
               }
               self.init()
 	    }
