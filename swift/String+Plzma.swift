@@ -35,11 +35,12 @@ internal extension String {
               self.init(cString: ptr, encoding: .utf8)!
 	    } else {
 	      print("---- Failed to make string from pointer:")
+	      let uintArray = ptr.map { UInt8(bitPattern: $0) }
 	      for i in 0...200 {
-	        if ptr[i] == 0 {
+	        if uintArray[i] == 0 {
 		  break
 		}
-		if let un = UnicodeScalar(Int(UInt8(ptr[i]))) {
+		if let un = UnicodeScalar(Int(uintArray[i])) {
 		  print("\(Character(un))", terminator: "")
 		}
               }
