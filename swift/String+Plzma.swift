@@ -29,7 +29,7 @@ import Foundation
 
 internal extension String {
     
-    init(utf8CString ptr: UnsafePointer<Int8>?) {
+    init(utf8CString ptr: UnsafePointer<UInt8>?) {
         if let ptr = ptr {
 	    if let testString = String(cString: ptr, encoding: .utf8) {
               self.init(cString: ptr, encoding: .utf8)!
