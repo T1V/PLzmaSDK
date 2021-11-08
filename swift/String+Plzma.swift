@@ -31,7 +31,15 @@ internal extension String {
     
     init(utf8CString ptr: UnsafePointer<Int8>?) {
         if let ptr = ptr {
-            self.init(cString: ptr, encoding: .utf8)!
+	    if let testString = String(cString: ptr, encoding: .utf8) {
+              self.init(cString: ptr, encoding: .utf8)!
+	    } else {
+	      print("---- Failed to make string from pointer")
+	      for i in 0...8 {
+      		print("     v = \(ptr[i])")
+              }
+              self.init()
+	    }
         } else {
             self.init()
         }
