@@ -29,7 +29,7 @@ import Foundation
 
 internal extension String {
     
-    init(utf8CString ptr: UnsafePointer<UInt8>?) {
+    init(utf8CString ptr: UnsafePointer<Int8>?) {
         if let ptr = ptr {
 	    if let testString = String(cString: ptr, encoding: .utf8) {
               self.init(cString: ptr, encoding: .utf8)!
@@ -39,7 +39,7 @@ internal extension String {
 	        if ptr[i] == 0 {
 		  break
 		}
-		if let un = UnicodeScalar(Int(ptr[i])) {
+		if let un = UnicodeScalar(Int(UInt8(ptr[i]))) {
 		  print("\(Character(un))", terminator: "")
 		}
               }
