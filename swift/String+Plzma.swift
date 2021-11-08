@@ -39,7 +39,7 @@ internal extension String {
 	        if ptr[i] == 0 {
 		  break
 		}
-		if let un = UnicodeScalar(ptr[i]) {
+		if let un = UnicodeScalar(Int(ptr[i])) {
 		  print("\(Character(un))", terminator: "")
 		}
               }
